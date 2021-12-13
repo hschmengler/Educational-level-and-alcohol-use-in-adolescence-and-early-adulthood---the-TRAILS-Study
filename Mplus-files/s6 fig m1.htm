@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+a:link
+{
+    color: black;
+    text-decoration: none;
+}
+a[name]:hover
+{
+    text-decoration: none;
+}
+a:hover
+{
+    color: blue;
+    text-decoration: underline;
+}
+a:visited
+{
+    color: black;
+    text-decoration: none;
+}
+.heading
+{
+    color: black;
+    font-weight: bold;
+    font-size: 110%;
+}
+.heading:hover
+{
+    color: black;
+    font-weight: bold;
+    font-size: 110%;
+    text-decoration: none;
+}
+</style>
+
+<body style="font-family:'Courier New'; font-size:14px;">
+<p class="heading">
+Mplus VERSION 8.7<br />
+MUTHEN & MUTHEN<br />
+12/13/2021   7:07 PM<br />
+</p>
+
+<p class='heading'>OUTPUT SECTIONS</p>
+
+<ul>
+     <li><a href='#input'>Input Instructions</a></li>
+     <li><a href='#inputmessages'>Input Warnings And Errors</a></li>
+     <li><a href='#summary_analysis'>Summary Of Analysis</a></li>
+     <li><a href='#summary_data'>Summary Of Data</a></li>
+     <li><a href='#covariance_coverage'>Covariance Coverage Of Data</a></li>
+     <li><a href='#catprops'>Univariate Proportions And Counts For Categorical Variables</a></li>
+     <li><a href='#univariatess'>Univariate Sample Statistics</a></li>
+     <li><a href='#modelmessages'>Model Warnings And Errors</a></li>
+     <li><a href='#model_fit'>Model Fit Information</a></li>
+     <li><a href='#model_results'>Model Results</a></li>
+     <li><a href='#standardized_results'>Standardized Model Results</a></li>
+     <li><a href='#rsquare'>R-square</a></li>
+     <li><a href='#tech1_output'>Technical 1 Output</a></li>
+     <li><a href='#tech4_output'>Technical 4 Output</a></li>
+</ul>
+<pre>
+
+<a name='input' class='heading'>INPUT INSTRUCTIONS</a>
+
+  Title:
+  S6 Fig, Model 1, bivariate traditional CLPM with Bayes estimator;
+
+  Data:
+    File is TRAILS_alc_final.dat ;
+  Variable:
+    Names are
+       T5_ladder_4cat T6_ladder_4cat T4_ladder_4cat T3_ladder_4cat T2_ladder_4cat
+       g1sex g1ageyrc p1ses p1ses3 p1eaefc g1wiscdq T2_alc_quantfreq T3_alc_quantfreq
+       T4_alc_quantfreq T5_alc_quantfreq district_4cat_dummy1 district_4cat_dummy2
+       district_4cat_dummy3 ethni_bin T6_auditc T6_audit_qf;
+    Missing are all (-9999) ;
+
+    Usevariables are T2_ladder_4cat T3_ladder_4cat T4_ladder_4cat T5_ladder_4cat
+    T6_ladder_4cat T2_alc_quantfreq T3_alc_quantfreq T4_alc_quantfreq T5_alc_quantfreq
+    T6_auditc;
+
+  categorical are T3_ladder_4cat T4_ladder_4cat T5_ladder_4cat
+    T6_ladder_4cat;
+
+
+  define:
+  standardize T2_alc_quantfreq T3_alc_quantfreq T4_alc_quantfreq
+  T5_alc_quantfreq T6_auditc;
+
+  Model:
+  T3_alc_quantfreq T3_ladder_4cat on T2_alc_quantfreq T2_ladder_4cat;
+
+  T4_alc_quantfreq T4_ladder_4cat on T3_alc_quantfreq T3_ladder_4cat;
+
+  T5_alc_quantfreq T5_ladder_4cat on T4_alc_quantfreq T4_ladder_4cat;
+
+  T6_auditc T6_ladder_4cat on T5_alc_quantfreq T5_ladder_4cat;
+
+  T2_alc_quantfreq with T2_ladder_4cat;
+  T3_alc_quantfreq with T3_ladder_4cat;
+  T4_alc_quantfreq with T4_ladder_4cat;
+  T5_alc_quantfreq with T5_ladder_4cat;
+  T6_auditc with T6_ladder_4cat;
+
+  T2_alc_quantfreq;
+  T2_ladder_4cat;
+
+  ANALYSIS:
+    Estimator = Bayes;
+    BITERATIONS=300000;
+    process = 22;
+    Algorithm = GIBBS (RW);
+
+  OUTPUT:     TECH1 TECH4 SAMPSTAT STANDARDIZED (STDYX);
+
+
+<a name='inputmessages' class='heading'></a>
+
+*** WARNING in VARIABLE command
+  Note that only the first 8 characters of variable names are used in the output.
+  Shorten variable names to avoid any confusion.
+*** WARNING in OUTPUT command
+  SAMPSTAT option is not available for ESTIMATOR=BAYES.  Use TYPE=BASIC.
+  Request for SAMPSTAT is ignored.
+*** WARNING
+  Data set contains cases with missing on all variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on all variables:  48
+   3 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+S6 Fig, Model 1, bivariate traditional CLPM with Bayes estimator;
+
+<a name='summary_analysis' class='heading'>SUMMARY OF ANALYSIS</a>
+
+Number of groups                                                 1
+Number of observations                                        2181
+
+Number of dependent variables                                    8
+Number of independent variables                                  2
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   T3_ALC_QUA  T4_ALC_QUA  T5_ALC_QUA  T6_AUDITC
+
+  Binary and ordered categorical (ordinal)
+   T3_LADDE    T4_LADDE    T5_LADDE    T6_LADDE
+
+Observed independent variables
+   T2_LADDE    T2_ALC_Q
+
+Treatment of predictor variables                            Latent
+
+
+Estimator                                                    BAYES
+Specifications for Bayesian Estimation
+  Point estimate                                            MEDIAN
+  Number of Markov chain Monte Carlo (MCMC) chains               2
+  Random seed for the first chain                                0
+  Starting value information                           UNPERTURBED
+  Algorithm used for Markov chain Monte Carlo            GIBBS(RW)
+  Convergence criterion                                  0.500D-01
+  Maximum number of iterations                              300000
+  K-th iteration used for thinning                               1
+Link                                                        PROBIT
+
+Input data file(s)
+  TRAILS_alc_final.dat
+Input data format  FREE
+
+
+<a name='summary_data' class='heading'>SUMMARY OF DATA</a>
+
+
+
+<a name='covariance_coverage' class='heading'>COVARIANCE COVERAGE OF DATA</a>
+
+Minimum covariance coverage value   0.100
+
+     Number of missing data patterns           209
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              T3_LADDE      T4_LADDE      T5_LADDE      T6_LADDE      T3_ALC_Q
+              ________      ________      ________      ________      ________
+ T3_LADDE       0.701
+ T4_LADDE       0.594         0.691
+ T5_LADDE       0.570         0.635         0.655
+ T6_LADDE       0.481         0.536         0.537         0.547
+ T3_ALC_Q       0.637         0.585         0.556         0.474         0.719
+ T4_ALC_Q       0.608         0.638         0.597         0.508         0.615
+ T5_ALC_Q       0.575         0.621         0.618         0.520         0.566
+ T6_AUDIT       0.465         0.501         0.493         0.486         0.464
+ T2_LADDE       0.680         0.643         0.613         0.512         0.691
+ T2_ALC_Q       0.648         0.638         0.603         0.508         0.669
+
+
+           Covariance Coverage
+              T4_ALC_Q      T5_ALC_Q      T6_AUDIT      T2_LADDE      T2_ALC_Q
+              ________      ________      ________      ________      ________
+ T4_ALC_Q       0.741
+ T5_ALC_Q       0.624         0.672
+ T6_AUDIT       0.510         0.514         0.540
+ T2_LADDE       0.687         0.627         0.504         0.904
+ T2_ALC_Q       0.678         0.620         0.503         0.811         0.898
+
+
+<a name='catprops' class='heading'>UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES</a>
+
+    T3_LADDE
+      Category 1    0.228          349.000
+      Category 2    0.265          405.000
+      Category 3    0.237          362.000
+      Category 4    0.270          413.000
+    T4_LADDE
+      Category 1    0.107          161.000
+      Category 2    0.330          498.000
+      Category 3    0.315          475.000
+      Category 4    0.248          374.000
+    T5_LADDE
+      Category 1    0.095          136.000
+      Category 2    0.248          354.000
+      Category 3    0.416          594.000
+      Category 4    0.241          345.000
+    T6_LADDE
+      Category 1    0.065           78.000
+      Category 2    0.229          273.000
+      Category 3    0.410          489.000
+      Category 4    0.295          352.000
+
+
+
+<a name='univariatess' class='heading'>UNIVARIATE SAMPLE STATISTICS</a>
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     T3_ALC_QUANTFRE       0.000       3.100      -0.727   20.97%      -0.727     -0.413     -0.309
+            1569.000       1.000      14.777      10.156    0.06%      -0.100      0.371
+     T4_ALC_QUANTFRE       0.000       3.019      -0.875   10.70%      -0.703     -0.445     -0.359
+            1617.000       1.000      15.742      10.127    0.06%      -0.144      0.500
+     T5_ALC_QUANTFRE       0.000       2.389      -0.925    9.96%      -0.743     -0.471     -0.289
+            1466.000       1.000       8.550       7.614    0.07%      -0.107      0.619
+     T6_AUDITC             0.000       0.382      -1.492   10.78%      -1.077     -0.247     -0.247
+            1178.000       1.000      -0.606       3.072    0.08%       0.168      0.998
+     T2_LADDER_4CAT        2.336       0.227       1.000   32.20%       1.000      2.000      2.000
+            1972.000       1.331      -1.393       4.000   23.17%       3.000      4.000
+     T2_ALC_QUANTFRE       0.000       7.162      -0.361   58.32%      -0.361     -0.361     -0.361
+            1958.000       1.000      74.742      15.450    0.05%      -0.141      0.078
+
+<a name='modelmessages' class='heading'></a>
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+     USE THE FBITERATIONS OPTION TO INCREASE THE NUMBER OF ITERATIONS BY A FACTOR
+     OF AT LEAST TWO TO CHECK CONVERGENCE AND THAT THE PSR VALUE DOES NOT INCREASE.
+
+
+
+<a name='model_fit' class='heading'>MODEL FIT INFORMATION</a>
+
+Number of Free Parameters                              45
+
+Bayesian Posterior Predictive Checking using Chi-Square
+
+          95% Confidence Interval for the Difference Between
+          the Observed and the Replicated Chi-Square Values
+
+                                -21.324            44.649
+
+          Posterior Predictive P-Value              0.229
+
+
+
+<a name='model_results' class='heading'>MODEL RESULTS</a>
+
+                                Posterior  One-Tailed         95% C.I.
+                    Estimate       S.D.      P-Value   Lower 2.5%  Upper 2.5%  Significance
+
+ T3_ALC_QUA ON
+    T2_ALC_QUA         0.232       0.025      0.000       0.183       0.281      *
+    T2_LADDER_        -0.120       0.022      0.000      -0.162      -0.077      *
+
+ T3_LADDER_ ON
+    T2_ALC_QUA        -0.087       0.031      0.002      -0.146      -0.026      *
+    T2_LADDER_         1.711       0.046      0.000       1.619       1.801      *
+
+ T4_ALC_QUA ON
+    T3_ALC_QUA         0.499       0.026      0.000       0.447       0.549      *
+    T3_LADDER_         0.035       0.011      0.001       0.012       0.056      *
+
+ T4_LADDER_ ON
+    T3_ALC_QUA        -0.053       0.048      0.137      -0.145       0.039
+    T3_LADDER_         1.084       0.043      0.000       1.002       1.173      *
+
+ T5_ALC_QUA ON
+    T4_ALC_QUA         0.559       0.023      0.000       0.515       0.604      *
+    T4_LADDER_         0.030       0.009      0.001       0.012       0.048      *
+
+ T5_LADDER_ ON
+    T4_ALC_QUA        -0.101       0.044      0.011      -0.187      -0.013      *
+    T4_LADDER_         0.845       0.038      0.000       0.773       0.927      *
+
+ T6_AUDITC  ON
+    T5_ALC_QUA         0.618       0.025      0.000       0.570       0.667      *
+    T5_LADDER_         0.031       0.011      0.002       0.011       0.053      *
+
+ T6_LADDER_ ON
+    T5_ALC_QUA         0.048       0.065      0.225      -0.080       0.177
+    T5_LADDER_         1.565       0.103      0.000       1.389       1.817      *
+
+ T2_ALC_Q WITH
+    T2_LADDER_        -0.122       0.027      0.000      -0.173      -0.068      *
+
+ T3_ALC_Q WITH
+    T3_LADDER_        -0.150       0.035      0.000      -0.215      -0.078      *
+
+ T4_ALC_Q WITH
+    T4_LADDER_        -0.009       0.039      0.409      -0.086       0.070
+
+ T5_ALC_Q WITH
+    T5_LADDER_         0.018       0.036      0.308      -0.053       0.086
+
+ T6_AUDIT WITH
+    T6_LADDER_         0.063       0.049      0.115      -0.042       0.152
+
+ Means
+    T2_LADDER_         2.345       0.026      0.000       2.295       2.395      *
+    T2_ALC_QUA         0.006       0.023      0.401      -0.039       0.050
+
+ Intercepts
+    T3_ALC_QUA         0.317       0.059      0.000       0.201       0.433      *
+    T4_ALC_QUA        -0.158       0.054      0.002      -0.263      -0.050      *
+    T5_ALC_QUA        -0.132       0.049      0.003      -0.229      -0.036      *
+    T6_AUDITC         -0.136       0.052      0.004      -0.238      -0.035      *
+
+ Thresholds
+    T3_LADDE$1         2.500       0.088      0.000       2.325       2.671      *
+    T3_LADDE$2         4.331       0.125      0.000       4.083       4.580      *
+    T3_LADDE$3         6.021       0.166      0.000       5.689       6.332      *
+    T4_LADDE$1         1.672       0.081      0.000       1.531       1.844      *
+    T4_LADDE$2         4.416       0.113      0.000       4.236       4.618      *
+    T4_LADDE$3         6.795       0.155      0.000       6.526       7.150      *
+    T5_LADDE$1         0.917       0.133      0.000       0.680       1.229      *
+    T5_LADDE$2         3.025       0.165      0.000       2.787       3.442      *
+    T5_LADDE$3         5.853       0.246      0.000       5.474       6.485      *
+    T6_LADDE$1         1.026       0.232      0.000       0.611       1.516      *
+    T6_LADDE$2         4.707       0.330      0.000       4.106       5.297      *
+    T6_LADDE$3         8.984       0.535      0.000       8.050       9.941      *
+
+ Variances
+    T2_LADDER_         1.323       0.042      0.000       1.243       1.411      *
+    T2_ALC_QUA         1.002       0.032      0.000       0.939       1.068      *
+
+ Residual Variances
+    T3_ALC_QUA         0.957       0.035      0.000       0.888       1.027      *
+    T4_ALC_QUA         0.787       0.029      0.000       0.732       0.848      *
+    T5_ALC_QUA         0.703       0.027      0.000       0.654       0.758      *
+    T6_AUDITC          0.640       0.027      0.000       0.590       0.696      *
+
+
+<a name='standardized_results' class='heading'>STANDARDIZED MODEL RESULTS</a>
+
+
+STDYX Standardization
+
+                                Posterior  One-Tailed         95% C.I.
+                    Estimate       S.D.      P-Value   Lower 2.5%  Upper 2.5%  Significance
+ T3_ALC_QUA ON
+    T2_ALC_QUA         0.228       0.024      0.000       0.180       0.275      *
+    T2_LADDER_        -0.135       0.024      0.000      -0.182      -0.087      *
+
+ T3_LADDER_ ON
+    T2_ALC_QUA        -0.039       0.014      0.002      -0.066      -0.012      *
+    T2_LADDER_         0.887       0.006      0.000       0.875       0.899      *
+
+ T4_ALC_QUA ON
+    T3_ALC_QUA         0.499       0.024      0.000       0.453       0.545      *
+    T3_LADDER_         0.076       0.025      0.001       0.027       0.123      *
+
+ T4_LADDER_ ON
+    T3_ALC_QUA        -0.021       0.018      0.137      -0.056       0.015
+    T3_LADDER_         0.919       0.006      0.000       0.908       0.930      *
+
+ T5_ALC_QUA ON
+    T4_ALC_QUA         0.561       0.019      0.000       0.523       0.596      *
+    T4_LADDER_         0.078       0.023      0.001       0.031       0.123      *
+
+ T5_LADDER_ ON
+    T4_ALC_QUA        -0.042       0.018      0.011      -0.077      -0.006      *
+    T4_LADDER_         0.908       0.007      0.000       0.895       0.924      *
+
+ T6_AUDITC  ON
+    T5_ALC_QUA         0.614       0.019      0.000       0.576       0.649      *
+    T5_LADDER_         0.075       0.025      0.002       0.025       0.124      *
+
+ T6_LADDER_ ON
+    T5_ALC_QUA         0.012       0.017      0.225      -0.020       0.045
+    T5_LADDER_         0.967       0.004      0.000       0.959       0.973      *
+
+ T2_ALC_Q WITH
+    T2_LADDER_        -0.106       0.023      0.000      -0.149      -0.060      *
+
+ T3_ALC_Q WITH
+    T3_LADDER_        -0.154       0.035      0.000      -0.217      -0.081      *
+
+ T4_ALC_Q WITH
+    T4_LADDER_        -0.010       0.044      0.409      -0.096       0.079
+
+ T5_ALC_Q WITH
+    T5_LADDER_         0.022       0.042      0.308      -0.063       0.103
+
+ T6_AUDIT WITH
+    T6_LADDER_         0.078       0.061      0.115      -0.053       0.190
+
+ Means
+    T2_LADDER_         2.039       0.039      0.000       1.961       2.115      *
+    T2_ALC_QUA         0.006       0.023      0.401      -0.038       0.050
+
+ Intercepts
+    T3_ALC_QUA         0.311       0.057      0.000       0.198       0.422      *
+    T4_ALC_QUA        -0.156       0.053      0.002      -0.257      -0.049      *
+    T5_ALC_QUA        -0.130       0.049      0.003      -0.225      -0.035      *
+    T6_AUDITC         -0.133       0.050      0.004      -0.233      -0.033      *
+
+ Thresholds
+    T3_LADDE$1         1.126       0.028      0.000       1.071       1.181      *
+    T3_LADDE$2         1.953       0.034      0.000       1.885       2.021      *
+    T3_LADDE$3         2.715       0.043      0.000       2.627       2.797      *
+    T4_LADDE$1         0.642       0.027      0.000       0.594       0.698      *
+    T4_LADDE$2         1.693       0.029      0.000       1.638       1.750      *
+    T4_LADDE$3         2.606       0.038      0.000       2.529       2.680      *
+    T5_LADDE$1         0.378       0.045      0.000       0.290       0.472      *
+    T5_LADDE$2         1.250       0.032      0.000       1.190       1.317      *
+    T5_LADDE$3         2.416       0.037      0.000       2.346       2.490      *
+    T6_LADDE$1         0.259       0.052      0.000       0.161       0.364      *
+    T6_LADDE$2         1.183       0.035      0.000       1.115       1.254      *
+    T6_LADDE$3         2.262       0.037      0.000       2.194       2.340      *
+
+ Variances
+    T2_LADDER_         1.000       0.000      0.000       1.000       1.000
+    T2_ALC_QUA         1.000       0.000      0.000       1.000       1.000
+
+ Residual Variances
+    T3_ALC_QUA         0.922       0.013      0.000       0.895       0.946      *
+    T4_ALC_QUA         0.761       0.023      0.000       0.716       0.804      *
+    T5_ALC_QUA         0.683       0.021      0.000       0.642       0.723      *
+    T6_AUDITC          0.613       0.023      0.000       0.570       0.659      *
+
+
+<a name='rsquare' class='heading'>R-SQUARE</a>
+
+                                Posterior  One-Tailed         95% C.I.
+    Variable        Estimate       S.D.      P-Value   Lower 2.5%  Upper 2.5%
+
+    T3_LADDER_4CAT     0.797       0.010      0.000       0.775       0.815
+    T4_LADDER_4CAT     0.853       0.007      0.000       0.840       0.867
+    T5_LADDER_4CAT     0.830       0.013      0.000       0.807       0.858
+    T6_LADDER_4CAT     0.937       0.007      0.000       0.921       0.948
+    T3_ALC_QUANTFRE    0.078       0.013      0.000       0.054       0.105
+    T4_ALC_QUANTFRE    0.239       0.023      0.000       0.196       0.284
+    T5_ALC_QUANTFRE    0.317       0.021      0.000       0.277       0.358
+    T6_AUDITC          0.387       0.023      0.000       0.341       0.430
+
+
+<a name='tech1_output' class='heading'>TECHNICAL 1 OUTPUT</a>
+
+
+     PARAMETER SPECIFICATION
+
+
+           TAU
+              T3_LADDE      T3_LADDE      T3_LADDE      T4_LADDE      T4_LADDE
+              ________      ________      ________      ________      ________
+                   34            35            36            37            38
+
+
+           TAU
+              T4_LADDE      T5_LADDE      T5_LADDE      T5_LADDE      T6_LADDE
+              ________      ________      ________      ________      ________
+                   39            40            41            42            43
+
+
+           TAU
+              T6_LADDE      T6_LADDE
+              ________      ________
+                   44            45
+
+
+           NU
+              T3_LADDE      T4_LADDE      T5_LADDE      T6_LADDE      T3_ALC_Q
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              T4_ALC_Q      T5_ALC_Q      T6_AUDIT      T2_LADDE      T2_ALC_Q
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           LAMBDA
+              T3_LADDE      T4_LADDE      T5_LADDE      T6_LADDE      T3_ALC_Q
+              ________      ________      ________      ________      ________
+ T3_LADDE           0             0             0             0             0
+ T4_LADDE           0             0             0             0             0
+ T5_LADDE           0             0             0             0             0
+ T6_LADDE           0             0             0             0             0
+ T3_ALC_Q           0             0             0             0             0
+ T4_ALC_Q           0             0             0             0             0
+ T5_ALC_Q           0             0             0             0             0
+ T6_AUDIT           0             0             0             0             0
+ T2_LADDE           0             0             0             0             0
+ T2_ALC_Q           0             0             0             0             0
+
+
+           LAMBDA
+              T4_ALC_Q      T5_ALC_Q      T6_AUDIT      T2_LADDE      T2_ALC_Q
+              ________      ________      ________      ________      ________
+ T3_LADDE           0             0             0             0             0
+ T4_LADDE           0             0             0             0             0
+ T5_LADDE           0             0             0             0             0
+ T6_LADDE           0             0             0             0             0
+ T3_ALC_Q           0             0             0             0             0
+ T4_ALC_Q           0             0             0             0             0
+ T5_ALC_Q           0             0             0             0             0
+ T6_AUDIT           0             0             0             0             0
+ T2_LADDE           0             0             0             0             0
+ T2_ALC_Q           0             0             0             0             0
+
+
+           THETA
+              T3_LADDE      T4_LADDE      T5_LADDE      T6_LADDE      T3_ALC_Q
+              ________      ________      ________      ________      ________
+ T3_LADDE           0
+ T4_LADDE           0             0
+ T5_LADDE           0             0             0
+ T6_LADDE           0             0             0             0
+ T3_ALC_Q           0             0             0             0             0
+ T4_ALC_Q           0             0             0             0             0
+ T5_ALC_Q           0             0             0             0             0
+ T6_AUDIT           0             0             0             0             0
+ T2_LADDE           0             0             0             0             0
+ T2_ALC_Q           0             0             0             0             0
+
+
+           THETA
+              T4_ALC_Q      T5_ALC_Q      T6_AUDIT      T2_LADDE      T2_ALC_Q
+              ________      ________      ________      ________      ________
+ T4_ALC_Q           0
+ T5_ALC_Q           0             0
+ T6_AUDIT           0             0             0
+ T2_LADDE           0             0             0             0
+ T2_ALC_Q           0             0             0             0             0
+
+
+           ALPHA
+              T3_LADDE      T4_LADDE      T5_LADDE      T6_LADDE      T3_ALC_Q
+              ________      ________      ________      ________      ________
+                    0             0             0             0             1
+
+
+           ALPHA
+              T4_ALC_Q      T5_ALC_Q      T6_AUDIT      T2_LADDE      T2_ALC_Q
+              ________      ________      ________      ________      ________
+                    2             3             4             5             6
+
+
+           BETA
+              T3_LADDE      T4_LADDE      T5_LADDE      T6_LADDE      T3_ALC_Q
+              ________      ________      ________      ________      ________
+ T3_LADDE           0             0             0             0             0
+ T4_LADDE           9             0             0             0            10
+ T5_LADDE           0            11             0             0             0
+ T6_LADDE           0             0            13             0             0
+ T3_ALC_Q           0             0             0             0             0
+ T4_ALC_Q          17             0             0             0            18
+ T5_ALC_Q           0            19             0             0             0
+ T6_AUDIT           0             0            21             0             0
+ T2_LADDE           0             0             0             0             0
+ T2_ALC_Q           0             0             0             0             0
+
+
+           BETA
+              T4_ALC_Q      T5_ALC_Q      T6_AUDIT      T2_LADDE      T2_ALC_Q
+              ________      ________      ________      ________      ________
+ T3_LADDE           0             0             0             7             8
+ T4_LADDE           0             0             0             0             0
+ T5_LADDE          12             0             0             0             0
+ T6_LADDE           0            14             0             0             0
+ T3_ALC_Q           0             0             0            15            16
+ T4_ALC_Q           0             0             0             0             0
+ T5_ALC_Q          20             0             0             0             0
+ T6_AUDIT           0            22             0             0             0
+ T2_LADDE           0             0             0             0             0
+ T2_ALC_Q           0             0             0             0             0
+
+
+           PSI
+              T3_LADDE      T4_LADDE      T5_LADDE      T6_LADDE      T3_ALC_Q
+              ________      ________      ________      ________      ________
+ T3_LADDE           0
+ T4_LADDE           0             0
+ T5_LADDE           0             0             0
+ T6_LADDE           0             0             0             0
+ T3_ALC_Q          23             0             0             0            24
+ T4_ALC_Q           0            25             0             0             0
+ T5_ALC_Q           0             0            27             0             0
+ T6_AUDIT           0             0             0            29             0
+ T2_LADDE           0             0             0             0             0
+ T2_ALC_Q           0             0             0             0             0
+
+
+           PSI
+              T4_ALC_Q      T5_ALC_Q      T6_AUDIT      T2_LADDE      T2_ALC_Q
+              ________      ________      ________      ________      ________
+ T4_ALC_Q          26
+ T5_ALC_Q           0            28
+ T6_AUDIT           0             0            30
+ T2_LADDE           0             0             0            31
+ T2_ALC_Q           0             0             0            32            33
+
+
+     STARTING VALUES
+
+
+           TAU
+              T3_LADDE      T3_LADDE      T3_LADDE      T4_LADDE      T4_LADDE
+              ________      ________      ________      ________      ________
+               -0.677        -0.015         0.552        -1.180        -0.141
+
+
+           TAU
+              T4_LADDE      T5_LADDE      T5_LADDE      T5_LADDE      T6_LADDE
+              ________      ________      ________      ________      ________
+                0.616        -1.251        -0.361         0.636        -1.477
+
+
+           TAU
+              T6_LADDE      T6_LADDE
+              ________      ________
+               -0.485         0.483
+
+
+           NU
+              T3_LADDE      T4_LADDE      T5_LADDE      T6_LADDE      T3_ALC_Q
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              T4_ALC_Q      T5_ALC_Q      T6_AUDIT      T2_LADDE      T2_ALC_Q
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           LAMBDA
+              T3_LADDE      T4_LADDE      T5_LADDE      T6_LADDE      T3_ALC_Q
+              ________      ________      ________      ________      ________
+ T3_LADDE       1.000         0.000         0.000         0.000         0.000
+ T4_LADDE       0.000         1.000         0.000         0.000         0.000
+ T5_LADDE       0.000         0.000         1.000         0.000         0.000
+ T6_LADDE       0.000         0.000         0.000         1.000         0.000
+ T3_ALC_Q       0.000         0.000         0.000         0.000         1.000
+ T4_ALC_Q       0.000         0.000         0.000         0.000         0.000
+ T5_ALC_Q       0.000         0.000         0.000         0.000         0.000
+ T6_AUDIT       0.000         0.000         0.000         0.000         0.000
+ T2_LADDE       0.000         0.000         0.000         0.000         0.000
+ T2_ALC_Q       0.000         0.000         0.000         0.000         0.000
+
+
+           LAMBDA
+              T4_ALC_Q      T5_ALC_Q      T6_AUDIT      T2_LADDE      T2_ALC_Q
+              ________      ________      ________      ________      ________
+ T3_LADDE       0.000         0.000         0.000         0.000         0.000
+ T4_LADDE       0.000         0.000         0.000         0.000         0.000
+ T5_LADDE       0.000         0.000         0.000         0.000         0.000
+ T6_LADDE       0.000         0.000         0.000         0.000         0.000
+ T3_ALC_Q       0.000         0.000         0.000         0.000         0.000
+ T4_ALC_Q       1.000         0.000         0.000         0.000         0.000
+ T5_ALC_Q       0.000         1.000         0.000         0.000         0.000
+ T6_AUDIT       0.000         0.000         1.000         0.000         0.000
+ T2_LADDE       0.000         0.000         0.000         1.000         0.000
+ T2_ALC_Q       0.000         0.000         0.000         0.000         1.000
+
+
+           THETA
+              T3_LADDE      T4_LADDE      T5_LADDE      T6_LADDE      T3_ALC_Q
+              ________      ________      ________      ________      ________
+ T3_LADDE       0.000
+ T4_LADDE       0.000         0.000
+ T5_LADDE       0.000         0.000         0.000
+ T6_LADDE       0.000         0.000         0.000         0.000
+ T3_ALC_Q       0.000         0.000         0.000         0.000         0.000
+ T4_ALC_Q       0.000         0.000         0.000         0.000         0.000
+ T5_ALC_Q       0.000         0.000         0.000         0.000         0.000
+ T6_AUDIT       0.000         0.000         0.000         0.000         0.000
+ T2_LADDE       0.000         0.000         0.000         0.000         0.000
+ T2_ALC_Q       0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              T4_ALC_Q      T5_ALC_Q      T6_AUDIT      T2_LADDE      T2_ALC_Q
+              ________      ________      ________      ________      ________
+ T4_ALC_Q       0.000
+ T5_ALC_Q       0.000         0.000
+ T6_AUDIT       0.000         0.000         0.000
+ T2_LADDE       0.000         0.000         0.000         0.000
+ T2_ALC_Q       0.000         0.000         0.000         0.000         0.000
+
+
+           ALPHA
+              T3_LADDE      T4_LADDE      T5_LADDE      T6_LADDE      T3_ALC_Q
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           ALPHA
+              T4_ALC_Q      T5_ALC_Q      T6_AUDIT      T2_LADDE      T2_ALC_Q
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         2.336         0.000
+
+
+           BETA
+              T3_LADDE      T4_LADDE      T5_LADDE      T6_LADDE      T3_ALC_Q
+              ________      ________      ________      ________      ________
+ T3_LADDE       0.000         0.000         0.000         0.000         0.000
+ T4_LADDE       0.000         0.000         0.000         0.000         0.000
+ T5_LADDE       0.000         0.000         0.000         0.000         0.000
+ T6_LADDE       0.000         0.000         0.000         0.000         0.000
+ T3_ALC_Q       0.000         0.000         0.000         0.000         0.000
+ T4_ALC_Q       0.000         0.000         0.000         0.000         0.000
+ T5_ALC_Q       0.000         0.000         0.000         0.000         0.000
+ T6_AUDIT       0.000         0.000         0.000         0.000         0.000
+ T2_LADDE       0.000         0.000         0.000         0.000         0.000
+ T2_ALC_Q       0.000         0.000         0.000         0.000         0.000
+
+
+           BETA
+              T4_ALC_Q      T5_ALC_Q      T6_AUDIT      T2_LADDE      T2_ALC_Q
+              ________      ________      ________      ________      ________
+ T3_LADDE       0.000         0.000         0.000         0.000         0.000
+ T4_LADDE       0.000         0.000         0.000         0.000         0.000
+ T5_LADDE       0.000         0.000         0.000         0.000         0.000
+ T6_LADDE       0.000         0.000         0.000         0.000         0.000
+ T3_ALC_Q       0.000         0.000         0.000         0.000         0.000
+ T4_ALC_Q       0.000         0.000         0.000         0.000         0.000
+ T5_ALC_Q       0.000         0.000         0.000         0.000         0.000
+ T6_AUDIT       0.000         0.000         0.000         0.000         0.000
+ T2_LADDE       0.000         0.000         0.000         0.000         0.000
+ T2_ALC_Q       0.000         0.000         0.000         0.000         0.000
+
+
+           PSI
+              T3_LADDE      T4_LADDE      T5_LADDE      T6_LADDE      T3_ALC_Q
+              ________      ________      ________      ________      ________
+ T3_LADDE       1.000
+ T4_LADDE       0.000         1.000
+ T5_LADDE       0.000         0.000         1.000
+ T6_LADDE       0.000         0.000         0.000         1.000
+ T3_ALC_Q       0.000         0.000         0.000         0.000         0.500
+ T4_ALC_Q       0.000         0.000         0.000         0.000         0.000
+ T5_ALC_Q       0.000         0.000         0.000         0.000         0.000
+ T6_AUDIT       0.000         0.000         0.000         0.000         0.000
+ T2_LADDE       0.000         0.000         0.000         0.000         0.000
+ T2_ALC_Q       0.000         0.000         0.000         0.000         0.000
+
+
+           PSI
+              T4_ALC_Q      T5_ALC_Q      T6_AUDIT      T2_LADDE      T2_ALC_Q
+              ________      ________      ________      ________      ________
+ T4_ALC_Q       0.500
+ T5_ALC_Q       0.000         0.500
+ T6_AUDIT       0.000         0.000         0.500
+ T2_LADDE       0.000         0.000         0.000         0.665
+ T2_ALC_Q       0.000         0.000         0.000         0.000         0.500
+
+
+
+     PRIORS FOR ALL PARAMETERS            PRIOR MEAN      PRIOR VARIANCE     PRIOR STD. DEV.
+
+     Parameter 1~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 2~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 3~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 4~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 5~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 6~N(0.000,infinity)           0.0000            infinity            infinity
+     Parameter 7~N(0.000,5.000)              0.0000              5.0000              2.2361
+     Parameter 8~N(0.000,5.000)              0.0000              5.0000              2.2361
+     Parameter 9~N(0.000,5.000)              0.0000              5.0000              2.2361
+     Parameter 10~N(0.000,5.000)             0.0000              5.0000              2.2361
+     Parameter 11~N(0.000,5.000)             0.0000              5.0000              2.2361
+     Parameter 12~N(0.000,5.000)             0.0000              5.0000              2.2361
+     Parameter 13~N(0.000,5.000)             0.0000              5.0000              2.2361
+     Parameter 14~N(0.000,5.000)             0.0000              5.0000              2.2361
+     Parameter 15~N(0.000,infinity)          0.0000            infinity            infinity
+     Parameter 16~N(0.000,infinity)          0.0000            infinity            infinity
+     Parameter 17~N(0.000,infinity)          0.0000            infinity            infinity
+     Parameter 18~N(0.000,infinity)          0.0000            infinity            infinity
+     Parameter 19~N(0.000,infinity)          0.0000            infinity            infinity
+     Parameter 20~N(0.000,infinity)          0.0000            infinity            infinity
+     Parameter 21~N(0.000,infinity)          0.0000            infinity            infinity
+     Parameter 22~N(0.000,infinity)          0.0000            infinity            infinity
+     Parameter 23~N(0.000,infinity)          0.0000            infinity            infinity
+     Parameter 24~N(0.000,infinity)          0.0000            infinity            infinity
+     Parameter 25~N(0.000,infinity)          0.0000            infinity            infinity
+     Parameter 26~N(0.000,infinity)          0.0000            infinity            infinity
+     Parameter 27~N(0.000,infinity)          0.0000            infinity            infinity
+     Parameter 28~N(0.000,infinity)          0.0000            infinity            infinity
+     Parameter 29~N(0.000,infinity)          0.0000            infinity            infinity
+     Parameter 30~N(0.000,infinity)          0.0000            infinity            infinity
+     Parameter 31~N(0.000,infinity)          0.0000            infinity            infinity
+     Parameter 32~N(0.000,infinity)          0.0000            infinity            infinity
+     Parameter 33~N(0.000,infinity)          0.0000            infinity            infinity
+     Parameter 34~N(0.000,5.000)             0.0000              5.0000              2.2361
+     Parameter 35~N(0.000,5.000)             0.0000              5.0000              2.2361
+     Parameter 36~N(0.000,5.000)             0.0000              5.0000              2.2361
+     Parameter 37~N(0.000,5.000)             0.0000              5.0000              2.2361
+     Parameter 38~N(0.000,5.000)             0.0000              5.0000              2.2361
+     Parameter 39~N(0.000,5.000)             0.0000              5.0000              2.2361
+     Parameter 40~N(0.000,5.000)             0.0000              5.0000              2.2361
+     Parameter 41~N(0.000,5.000)             0.0000              5.0000              2.2361
+     Parameter 42~N(0.000,5.000)             0.0000              5.0000              2.2361
+     Parameter 43~N(0.000,5.000)             0.0000              5.0000              2.2361
+     Parameter 44~N(0.000,5.000)             0.0000              5.0000              2.2361
+     Parameter 45~N(0.000,5.000)             0.0000              5.0000              2.2361
+
+
+<a name='tech4_output' class='heading'>TECHNICAL 4 OUTPUT</a>
+
+
+     ESTIMATES DERIVED FROM THE MODEL
+
+
+           ESTIMATED MEANS FOR THE LATENT VARIABLES
+              T3_LADDE      T4_LADDE      T5_LADDE      T6_LADDE      T3_ALC_Q
+              ________      ________      ________      ________      ________
+                4.012         4.348         3.672         5.748         0.038
+
+
+           ESTIMATED MEANS FOR THE LATENT VARIABLES
+              T4_ALC_Q      T5_ALC_Q      T6_AUDIT      T2_LADDE      T2_ALC_Q
+              ________      ________      ________      ________      ________
+                0.001         0.000        -0.021         2.345         0.006
+
+
+           ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              T3_LADDE      T4_LADDE      T5_LADDE      T6_LADDE      T3_ALC_Q
+              ________      ________      ________      ________      ________
+ T3_LADDE       4.917
+ T4_LADDE       5.357         6.839
+ T5_LADDE       4.532         5.789         5.910
+ T6_LADDE       7.099         9.067         9.253        15.491
+ T3_ALC_Q      -0.490        -0.587        -0.546        -0.842         1.036
+ T4_ALC_Q      -0.073        -0.114        -0.200        -0.286         0.500
+ T5_ALC_Q       0.120         0.142         0.080         0.176         0.262
+ T6_AUDIT       0.217         0.270         0.236         0.462         0.145
+ T2_LADDE       2.274         2.476         2.092         3.278        -0.186
+ T2_ALC_Q      -0.297        -0.335        -0.294        -0.458         0.247
+
+
+           ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              T4_ALC_Q      T5_ALC_Q      T6_AUDIT      T2_LADDE      T2_ALC_Q
+              ________      ________      ________      ________      ________
+ T4_ALC_Q       1.035
+ T5_ALC_Q       0.575         1.029
+ T6_AUDIT       0.349         0.639         1.043
+ T2_LADDE      -0.013         0.067         0.107         1.323
+ T2_ALC_Q       0.113         0.053         0.024        -0.122         1.002
+
+
+           ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              T3_LADDE      T4_LADDE      T5_LADDE      T6_LADDE      T3_ALC_Q
+              ________      ________      ________      ________      ________
+ T3_LADDE       1.000
+ T4_LADDE       0.924         1.000
+ T5_LADDE       0.841         0.911         1.000
+ T6_LADDE       0.813         0.881         0.967         1.000
+ T3_ALC_Q      -0.217        -0.220        -0.221        -0.210         1.000
+ T4_ALC_Q      -0.032        -0.043        -0.081        -0.071         0.483
+ T5_ALC_Q       0.054         0.054         0.033         0.044         0.254
+ T6_AUDIT       0.096         0.101         0.095         0.115         0.139
+ T2_LADDE       0.892         0.823         0.748         0.724        -0.159
+ T2_ALC_Q      -0.134        -0.128        -0.121        -0.116         0.243
+
+
+           ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              T4_ALC_Q      T5_ALC_Q      T6_AUDIT      T2_LADDE      T2_ALC_Q
+              ________      ________      ________      ________      ________
+ T4_ALC_Q       1.000
+ T5_ALC_Q       0.557         1.000
+ T6_AUDIT       0.336         0.617         1.000
+ T2_LADDE      -0.011         0.057         0.091         1.000
+ T2_ALC_Q       0.111         0.052         0.023        -0.106         1.000
+
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    e:\onedrive - universiteit utrecht\trails alcohol paper\resubmission plos one\response to reviewers\final scripts\mp
+
+     Beginning Time:  19:07:37
+        Ending Time:  19:08:16
+       Elapsed Time:  00:00:39
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen
+</pre>
+</body>
+</html>
